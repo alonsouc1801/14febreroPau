@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 de Febrero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFE4E1; /* Rosa pastel suave */
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-y: auto; /* Ahora permite scrollear */
+        }
+        .container {
+            background-color: rgba(255, 250, 240, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin: 15px;
+        }
+        .message {
+            font-size: 1.5em;
+            color: #4682B4;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #F4A5AE;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #E57373;
+        }
+        .response {
+            display: none;
+            margin-top: 30px;
+        }
+        /* Efecto corazones flotantes */
+        .heart, .cry {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0.8;
+            animation: float 4s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-50px); opacity: 0.8; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Hola Mono! 🌻</h1>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Capuchin_monkeys_sharing.jpg" alt="Gaitlyn Rae">
+            <img src="https://i.pinimg.com/originals/2b/17/61/2b1761dbaff92ece596dc7027f746a93.jpg" alt="Kiala Capuchin">
+        </div>
+        <p class="message">¿Te gustaría pasar este 14 de febrero juntos? 💖</p>
+        <button class="btn" onclick="showResponse('yes')">Sí, claro 🌻</button>
+        <button class="btn" onclick="showResponse('no')">Estoy pensando... 😅</button>
+
+        <div class="response" id="happy-response">
+            <h2>Goooood tqm 🐒❤️🌻</h2>
+            <img src="https://static.wixstatic.com/media/6e5bec_a11f270791d0449db555f5ac22cf7aa2~mv2.png/v1/fill/w_320,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6e5bec_a11f270791d0449db555f5ac22cf7aa2~mv2.png" alt="Gaitlyn Rae Feliz">
+            <p>¡Estoy muy feliz de que dijiste que sí! 🌻✨</p>
+            <p><strong>Sácale screenshot y envíalo para confirmar tu respuesta 📸</strong></p>
+        </div>
+
+        <div class="response" id="sad-response">
+            <h2>¡Oh no! 😢</h2>
+            <img src="https://thumbs.dreamstime.com/b/mirada-dolorosa-de-un-mono-capuchino-en-cautiverio-la-tristeza-y-el-dolor-se-reflejan-este-peque%C3%B1o-que-est%C3%A1-esperando-ser-158776288.jpg" alt="Mono triste">
+            <p>Es una pena, ¡pero aún podemos ser amigos! bruuuhhh 😞🌻</p>
+        </div>
+    </div>
+
+    <script>
+        function showResponse(answer) {
+            document.getElementById('happy-response').style.display = 'none';
+            document.getElementById('sad-response').style.display = 'none';
+
+            if (answer === 'yes') {
+                document.getElementById('happy-response').style.display = 'block';
+                createEffect('❤️'); // Corazones flotando
+            } else if (answer === 'no') {
+                document.getElementById('sad-response').style.display = 'block';
+                createEffect('😭'); // Carita llorando
+            }
+        }
+
+        function createEffect(symbol) {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const effect = document.createElement("div");
+                    effect.innerHTML = symbol;
+                    effect.classList.add(symbol === '❤️' ? 'heart' : 'cry');
+                    document.body.appendChild(effect);
+
+                    effect.style.left = `${Math.random() * window.innerWidth}px`;
+                    effect.style.bottom = '0px';
+                    effect.style.animationDuration = `${Math.random() * 2 + 3}s`;
+
+                    setTimeout(() => {
+                        effect.remove();
+                    }, 4000);
+                }, i * 200);
+            }
+        }
+    </script>
+
+</body>
+</html>
+
